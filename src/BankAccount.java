@@ -14,17 +14,27 @@ class BankAccount {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the sum on the bank account:");
         this.amountMoney = scanner.nextInt();
+        while (amountMoney<0) {
+            System.out.println("Error. Deposit has negative value.");
+            System.out.println("Please enter the sum on the bank account:");
+            this.amountMoney = scanner.nextInt();
+        }
     }
     public int calculateDaysOfWithdrawal(){
         inputAmount();
+        if (amountMoney==1){
+            counter = 1;
+            return counter;
+        }
         int nod = amountMoney-1;
-        while (amountMoney>1){
-            if(amountMoney%nod==0){
+        while (amountMoney!=0){
+            if(amountMoney%nod==0 && nod<amountMoney){
                 counter = counter + 1;
                 amountMoney = amountMoney-nod;
                 nod = amountMoney - 1;
                 if (amountMoney==1){
                     counter = counter + 1;
+                    break;
                 }
             }
             else {
