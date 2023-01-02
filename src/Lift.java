@@ -16,7 +16,6 @@ class Lift {
     int lastFloor;
     int stepUp;
     int stepDown;
-    int nettoStep;
     int currentFloor = 1;
     int counter = 0;
 
@@ -26,13 +25,16 @@ class Lift {
         this.lastFloor = scanner.nextInt();
         this.stepUp = scanner.nextInt();
         this.stepDown = scanner.nextInt();
-        this.nettoStep = stepUp - stepDown;
     }
     public int calculateFloor(){
         inputInfo();
         while (currentFloor<=lastFloor){
-            currentFloor = currentFloor+nettoStep;
+            currentFloor = currentFloor+stepUp;
             counter++;
+            if (currentFloor>=lastFloor){
+                break;
+            }
+            currentFloor = currentFloor-stepDown;
         }
         return counter;
     }
